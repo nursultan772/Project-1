@@ -1,0 +1,25 @@
+<ul>
+    <li>
+        <p>{{product.title}}</p>
+        <p>{{product.text}}</p>
+        <p>{{product.price}}</p>
+        <p>{{product.category}}</p>
+        <p>{{product.create_date}}</p>
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{product.title}}">
+        {% endif %}
+    </li>
+
+    <h2>Comments:   </h2>
+
+    <li>
+        {% for comment in product.comment_set.all%}
+        <p>{{comment.author}}</p>
+        <p>{{comment.text}}</p>
+        <p>{{comment.create_time}}</p>
+        {% endfor %}
+    </li>
+</ul>
+<button onclick="window.location.href='{% url 'productUpdateView'  product.pk %}'">Update this product</button>
+<button onclick="window.location.href='{% url 'productDeleteView'  product.pk %}'">Delete this product</button>
+<a href=" {% url 'productView' %}">Cencel</a>
